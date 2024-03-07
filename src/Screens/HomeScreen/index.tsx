@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useLayoutEffect} from 'react';
+import React, {useCallback, useContext, useLayoutEffect, useMemo} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import NewsCard from '../../components/molecules/NewsCard';
-import {Article} from '../../types';
 import SwipeableFlatList from 'react-native-swipeable-list';
+import NewsCard from '../../components/NewsCard';
+import {Article} from '../../types';
 import {ThemeContext} from '../../utilities/ThemeContext';
 import {ThemeInterface} from '../../utilities/themes';
 import {useDispatch, useSelector} from 'react-redux';
@@ -30,7 +30,7 @@ const HomeScreen = ({navigation}) => {
   const displayNews = [...pinnedNews, ...topNews.slice(0, 10)];
   const dispatch = useDispatch();
   useHandleTopNews();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const renderReloadButton = useCallback(() => {
     return (
@@ -77,6 +77,10 @@ const HomeScreen = ({navigation}) => {
     );
   }
 
+  function keyExtractor(item: Article) {
+    return item.id;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {displayNews.length === 0 ? (
@@ -85,7 +89,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.listContainer}>
           <SwipeableFlatList
             data={displayNews}
-            keyExtractor={(item: Article) => item.id}
+            keyExtractor={keyExtractor}
             renderItem={renderItem}
             maxSwipeDistance={120}
             renderQuickActions={renderQuickActions}

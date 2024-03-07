@@ -1,11 +1,11 @@
 import {useEffect, useRef} from 'react';
-import {useGetTopHeadlines} from '../apis';
 import {
   addTopNews,
   updateNewsBatchAsSeen,
 } from '../../redux/slices/topNewsSlice';
 import {useDispatch, useSelector} from 'react-redux';
 import {IRootState} from '../../redux/store';
+import {useGetTopHeadlines} from '../apis/useGetTopHeadlines';
 
 export function useHandleTopNews() {
   const {topNews} = useSelector((state: IRootState) => state.reducer);
@@ -15,7 +15,7 @@ export function useHandleTopNews() {
 
   useEffect(() => {
     if (topNews.length === 0) {
-      fetchData();
+      fetchData(100);
     }
   }, [fetchData, topNews]);
 
@@ -26,9 +26,9 @@ export function useHandleTopNews() {
   }, [dispatch, newsList, topNews]);
 
   useEffect(() => {
-    timer.current = setInterval(() => {
-      dispatch(updateNewsBatchAsSeen());
-    }, 10000);
+    // timer.current = setInterval(() => {
+    //   dispatch(updateNewsBatchAsSeen());
+    // }, 10000);
     return () => {
       if (timer.current !== null) {
         clearInterval(timer.current);

@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {Article, FontFamily} from '../../types';
-import {placeHolderImage} from '../../assets';
-import {ThemeContext} from '../../utilities/ThemeContext';
-import {ThemeInterface} from '../../utilities/themes';
+
+import {Article, FontFamily} from '../types';
+import {pinImage, placeHolderImage} from '../assets';
+import {ThemeContext} from '../utilities/ThemeContext';
+import {ThemeInterface} from '../utilities/themes';
 
 interface Props {
   article: Article;
@@ -18,8 +19,8 @@ interface Props {
 
 function NewsCard({article}: Props) {
   const {theme} = useContext(ThemeContext);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
-  const styles = getStyles(theme);
   const publishedDate = useMemo(() => {
     return new Date(article.publishedAt).toUTCString();
   }, [article.publishedAt]);
@@ -45,6 +46,7 @@ function NewsCard({article}: Props) {
         <Text style={styles.description}>{article.title}</Text>
         <Text style={styles.date}>{publishedDate}</Text>
       </View>
+      {article.isPinned && <Image source={pinImage} style={styles.pinImage} />}
     </TouchableOpacity>
   );
 }
@@ -90,6 +92,14 @@ const getStyles = (theme: ThemeInterface) =>
       fontSize: 12,
       marginBottom: 5,
       color: theme.secondaryTextColor,
+    },
+    pinImage: {
+      height: 12,
+      width: 12,
+      tintColor: theme.textColor,
+      position: 'absolute',
+      top: 10,
+      right: 10,
     },
   });
 

@@ -1,16 +1,18 @@
-import * as React from 'react';
+import React, {useContext, useMemo} from 'react';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import HomeScreen from '../screens/HomeScreen';
 import {ThemeInterface} from '../utilities/themes';
-import {StyleSheet} from 'react-native';
 import {ThemeContext} from '../utilities/ThemeContext';
 import {FontFamily} from '../types';
+
 const Stack = createStackNavigator();
 
 export default function RootNavigation() {
-  const {theme} = React.useContext(ThemeContext);
-  const styles = getStyles(theme);
+  const {theme} = useContext(ThemeContext);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
     <NavigationContainer>

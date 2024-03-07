@@ -9,7 +9,7 @@ const networkManager = axios.create({
 // Add request interceptor
 networkManager.interceptors.request.use(
   function (config) {
-    config.url = config.url + '&apiKey=e00e0606ce104e4e8ec4add96d8608a4';
+    config.params.apiKey = 'e00e0606ce104e4e8ec4add96d8608a4';
     return config;
   },
   function (error) {

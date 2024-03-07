@@ -1,23 +1,28 @@
 import {useState} from 'react';
+import {Alert} from 'react-native';
+import uuid from 'react-native-uuid';
+
 import {Article, NewsResponse} from '../../types';
 import networkManager from '../../services/NetworkManager/NetworkManager';
-import uuid from 'react-native-uuid';
 
 export function useGetTopHeadlines() {
   const [newsList, setNewsList] = useState<Article[]>([]);
 
-  async function fetchData() {
+  async function fetchData(pageSize: number) {
     try {
-      let response = (await networkManager.get(
-        '/top-headlines?pageSize=100&language=en',
-      )) as NewsResponse;
+      const response = (await networkManager.get('/top-headlines', {
+        params: {
+          pageSize,
+          language: 'en',
+        },
+      })) as NewsResponse;
       response.articles.forEach(article => {
         article.id = uuid.v4().toString();
         article.isPinned = false;
       });
       setNewsList(response.articles.filter(art => art.author !== null));
     } catch (err) {
-      console.log(err);
+      Alert.alert('oops...', 'Something went wrong while fetching the data');
     }
   }
 
