@@ -8,12 +8,13 @@ import {
   View,
 } from 'react-native';
 import SwipeableFlatList from 'react-native-swipeable-list';
+import {useDispatch, useSelector} from 'react-redux';
+
 import NewsCard from '../../components/NewsCard';
 import {Article} from '../../types';
 import {ThemeContext} from '../../utilities/ThemeContext';
 import {ThemeInterface} from '../../utilities/themes';
-import {useDispatch, useSelector} from 'react-redux';
-import {useHandleTopNews} from '../../hooks/handlers';
+import {useHandleTopNews} from '../../hooks/handlers/useHandleTopNews';
 import {IRootState} from '../../redux/store';
 import {
   addPinnedNews,

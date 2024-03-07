@@ -26,9 +26,9 @@ export function useHandleTopNews() {
   }, [dispatch, newsList, topNews]);
 
   useEffect(() => {
-    // timer.current = setInterval(() => {
-    //   dispatch(updateNewsBatchAsSeen());
-    // }, 10000);
+    timer.current = setInterval(() => {
+      dispatch(updateNewsBatchAsSeen());
+    }, 10000);
     return () => {
       if (timer.current !== null) {
         clearInterval(timer.current);

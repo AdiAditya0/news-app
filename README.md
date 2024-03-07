@@ -1,79 +1,54 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# News App
 
-# Getting Started
+### Description
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+A news app that fetches the top 100 news headlines, stores them for offline access, displays them in a dynamic list view, and allows user interaction.
 
-## Step 1: Start the Metro Server
+Set up a new React Native project using either Expo or React Native CLI.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Implemented a background task to fetch the top 100 news headlines from a news API
+  https://newsapi.org/
+- Stored these headlines in local storage for offline access.
+- On app load, display a splash logo and small animation.
+- HomeScreens shows a list view with the first 10 headlines.
+- Implemented a timer that introduces a new batch of up to 5 random headlines to the top of the list every 10 seconds.
+- Implemented Reload Button for users to manually trigger fetching the next batch from local storage and resetting the drip timer.
+- Added logic, when all headlines from the current batch have been displayed, reset local storage and fetch the next batch of headlines and populate the list view.
+- Used 3rd party library to allow users to swipe a headline to delete it or pin it to the top of the view.
+- A pinned headline should stay in view when the list updates, whether manually or automatically.
+- Deleting a headline should remove it from view, with the next headline appearing at the top of the list.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Assumptions
 
-```bash
-# using npm
-npm start
+- The API will always return different set of news, once current set of 100 news get exhausted.
 
-# OR using Yarn
-yarn start
-```
+### Pre-requisites
 
-## Step 2: Start your Application
+React Native Development Environment Setup -> (https://reactnative.dev/docs/environment-setup)
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Node -> v21.6.2
+CocoaPod -> 1.11.3
+Minimum iOS version -> 13.4
+Android minSdkVersion -> 21
 
-### For Android
+### Project Setup
 
-```bash
-# using npm
-npm run android
+- Clone the repository
+- Install dependencies using `npm i`
 
-# OR using Yarn
-yarn android
-```
+> Run on iOS
 
-### For iOS
+- Run `npx pod-install`
+- Run `npx react-native run-ios`
 
-```bash
-# using npm
-npm run ios
+> Run on Android
 
-# OR using Yarn
-yarn ios
-```
+- Run `npx react-native run-android`
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Issues
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- API might show some redundant data after refetching and syncing
 
-## Step 3: Modifying your App
+### APK
 
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- [APK link](https://i.diawi.com/WvsJkj)
