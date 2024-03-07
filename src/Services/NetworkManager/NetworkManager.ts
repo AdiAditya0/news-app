@@ -9,10 +9,13 @@ const networkManager = axios.create({
 // Add request interceptor
 networkManager.interceptors.request.use(
   function (config) {
-    config.url = config.url + '&apiKey=215568410c074611b7301d7574e4d5cc';
+    config.url = config.url + '&apiKey=e00e0606ce104e4e8ec4add96d8608a4';
+    console.log(config);
+
     return config;
   },
   function (error) {
+    console.log(error);
     return Promise.reject(error);
   },
 );
@@ -23,10 +26,9 @@ networkManager.interceptors.response.use(
     return response.data;
   },
   function (error) {
+    console.log(error);
     return Promise.reject(error);
   },
 );
-
-// networkManager.get('/top-headlines?pageSize=100');
 
 export default networkManager;
