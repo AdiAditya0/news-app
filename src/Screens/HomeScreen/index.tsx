@@ -7,29 +7,31 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import NewsCard from '../../Components/molecules/NewsCard';
-import {Article, FontFamily} from '../../Types';
+import NewsCard from '../../components/molecules/NewsCard';
+import {Article} from '../../types';
 import SwipeableFlatList from 'react-native-swipeable-list';
 import {ThemeContext} from '../../utilities/ThemeContext';
 import {ThemeInterface} from '../../utilities/themes';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHandleTopNews} from '../../Hooks/handlers';
+import {useHandleTopNews} from '../../hooks/handlers';
 import {IRootState} from '../../redux/store';
 import {
   addPinnedNews,
   markNewsAsSeen,
   updateNewsBatchAsSeen,
 } from '../../redux/slices/topNewsSlice';
-import {deleteImage, pinImage, placeHolderImage} from '../../Assets';
+import {deleteImage, pinImage, placeHolderImage} from '../../assets';
 
 const HomeScreen = ({navigation}) => {
   const {theme} = useContext(ThemeContext);
   const {topNews, pinnedNews} = useSelector(
     (state: IRootState) => state.reducer,
   );
+  const displayNews = [...pinnedNews, ...topNews.slice(0, 10)];
   const dispatch = useDispatch();
   useHandleTopNews();
   const styles = getStyles(theme);
+
   const renderReloadButton = useCallback(() => {
     return (
       <TouchableOpacity
@@ -37,16 +39,16 @@ const HomeScreen = ({navigation}) => {
         onPress={() => {
           dispatch(updateNewsBatchAsSeen());
         }}>
-        <Text>Reload</Text>
+        <Text style={styles.reloadText}>Reload</Text>
       </TouchableOpacity>
     );
-  }, [dispatch, styles.reloadButton]);
+  }, [dispatch, styles]);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: renderReloadButton,
     });
   }, [navigation, renderReloadButton]);
-  const displayNews = [...pinnedNews, ...topNews.slice(0, 10)];
 
   function renderItem({item}: {item: Article}) {
     return <NewsCard article={item} />;
@@ -80,14 +82,16 @@ const HomeScreen = ({navigation}) => {
       {displayNews.length === 0 ? (
         <Image style={styles.placeHolder} source={placeHolderImage} />
       ) : (
-        <SwipeableFlatList
-          data={displayNews}
-          keyExtractor={(item: Article) => item.id}
-          renderItem={renderItem}
-          maxSwipeDistance={120}
-          renderQuickActions={renderQuickActions}
-          shouldBounceOnMount={false}
-        />
+        <View style={styles.listContainer}>
+          <SwipeableFlatList
+            data={displayNews}
+            keyExtractor={(item: Article) => item.id}
+            renderItem={renderItem}
+            maxSwipeDistance={120}
+            renderQuickActions={renderQuickActions}
+            shouldBounceOnMount={false}
+          />
+        </View>
       )}
     </SafeAreaView>
   );
@@ -96,6 +100,8 @@ const HomeScreen = ({navigation}) => {
 const getStyles = (theme: ThemeInterface) =>
   StyleSheet.create({
     container: {
+      width: '100%',
+      height: '100%',
       backgroundColor: theme.backgroundColor,
     },
     qaContainer: {
@@ -132,6 +138,14 @@ const getStyles = (theme: ThemeInterface) =>
     },
     reloadButton: {
       marginHorizontal: 10,
+    },
+    reloadText: {
+      color: theme.textColor,
+    },
+    listContainer: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: theme.backgroundColor,
     },
   });
 

@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {Article, FontFamily} from '../../Types';
-import {placeHolderImage} from '../../Assets';
+import {Article, FontFamily} from '../../types';
+import {placeHolderImage} from '../../assets';
 import {ThemeContext} from '../../utilities/ThemeContext';
 import {ThemeInterface} from '../../utilities/themes';
 

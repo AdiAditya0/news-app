@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Article} from '../../Types';
+import {Article} from '../../types';
 
 export interface TopNewsStore {
   topNews: Article[];

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import RootNavigation from './src/Navigation';
+import RootNavigation from './src/navigation';
 import {ThemeProvider} from './src/utilities/ThemeContext';
 import LottieView from 'lottie-react-native';
 import {StyleSheet, View} from 'react-native';
@@ -25,7 +25,7 @@ function App(): React.JSX.Element {
               <LottieView
                 speed={1.9}
                 style={styles.lottieView}
-                source={require('./src/Assets/lottie/NewsAnimation.json')}
+                source={require('./src/assets/lottie/NewsAnimation.json')}
                 autoPlay
                 loop={false}
               />

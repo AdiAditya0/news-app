@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Article, NewsResponse} from '../../Types';
-import networkManager from '../../Services/NetworkManager/NetworkManager';
+import {Article, NewsResponse} from '../../types';
+import networkManager from '../../services/NetworkManager/NetworkManager';
 import uuid from 'react-native-uuid';
 
 export function useGetTopHeadlines() {

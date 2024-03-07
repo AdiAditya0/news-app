@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from '../Screens/HomeScreen';
+import HomeScreen from '../screens/HomeScreen';
 import {ThemeInterface} from '../utilities/themes';
 import {StyleSheet} from 'react-native';
 import {ThemeContext} from '../utilities/ThemeContext';
-import {FontFamily} from '../Types';
+import {FontFamily} from '../types';
 const Stack = createStackNavigator();
 
 export default function RootNavigation() {
