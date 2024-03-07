@@ -16,19 +16,18 @@ const topNewsSlice = createSlice({
   initialState,
   reducers: {
     addTopNews: (state, action) => {
-      console.log('addTopNews');
-
       state.topNews = [];
       state.topNews.push(...action.payload);
     },
     markNewsAsSeen: (state, action) => {
-      console.log('markNewsAsSeen');
-
-      state.topNews.filter(article => article.id !== action.payload.id);
+      state.topNews = state.topNews.filter(
+        article => article.id !== action.payload.id,
+      );
+      state.pinnedNews = state.pinnedNews.filter(
+        article => article.id !== action.payload.id,
+      );
     },
     updateNewsBatchAsSeen: state => {
-      console.log('updateNewsBatchAsSeen');
-
       if (state.topNews.length >= 5) {
         state.topNews = state.topNews.slice(5, state.topNews.length);
       } else {
@@ -36,10 +35,11 @@ const topNewsSlice = createSlice({
       }
     },
     addPinnedNews: (state, action) => {
-      console.log('addPinnedNews');
-
-      state.topNews.filter(article => article.id !== action.payload.id);
-      state.pinnedNews.push(action.payload);
+      state.topNews = state.topNews.filter(
+        article => article.id !== action.payload.id,
+      );
+      const newsItem = {...action.payload, isPinned: true};
+      state.pinnedNews.push(newsItem);
     },
   },
 });

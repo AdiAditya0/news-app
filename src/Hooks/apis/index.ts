@@ -13,6 +13,7 @@ export function useGetTopHeadlines() {
       )) as NewsResponse;
       response.articles.forEach(article => {
         article.id = uuid.v4().toString();
+        article.isPinned = false;
       });
       setNewsList(response.articles.filter(art => art.author !== null));
     } catch (err) {

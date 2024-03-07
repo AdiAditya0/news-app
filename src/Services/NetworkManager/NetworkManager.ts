@@ -10,12 +10,10 @@ const networkManager = axios.create({
 networkManager.interceptors.request.use(
   function (config) {
     config.url = config.url + '&apiKey=e00e0606ce104e4e8ec4add96d8608a4';
-    console.log(config);
-
     return config;
   },
   function (error) {
-    console.log(error);
+    console.log('Request error > ', error);
     return Promise.reject(error);
   },
 );
@@ -26,7 +24,7 @@ networkManager.interceptors.response.use(
     return response.data;
   },
   function (error) {
-    console.log(error);
+    console.log('Response error > ', error);
     return Promise.reject(error);
   },
 );

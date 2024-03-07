@@ -15,8 +15,6 @@ export function useHandleTopNews() {
 
   useEffect(() => {
     if (topNews.length === 0) {
-      console.log('fetch');
-
       fetchData();
     }
   }, [fetchData, topNews]);
