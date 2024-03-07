@@ -51,4 +51,11 @@ Android minSdkVersion -> 21
 
 ### APK
 
-- [APK link](https://i.diawi.com/WvsJkj)
+- [APK link](https://drive.google.com/file/d/17wMwHeAS7T_h-uvxNxudGFAQrA7QiIAV/view?usp=sharing)
+
+> ScreenShots
+
+![Simulator Screenshot - iPhone SE (3rd generation) - 2024-03-07 at 23 25 54](https://github.com/AdiAditya0/news-app/assets/31439875/7f65ff84-b06b-49a1-9129-fbbd3f6d8ab6)
+![Simulator Screenshot - iPhone SE (3rd generation) - 2024-03-07 at 23 25 46](https://github.com/AdiAditya0/news-app/assets/31439875/ece3c26f-b23d-4e69-92e6-b1d983514bdb)
+![Simulator Screenshot - iPhone SE (3rd generation) - 2024-03-07 at 23 25 36](https://github.com/AdiAditya0/news-app/assets/31439875/7e9614ce-3434-4000-a05d-89cb91c165e2)
+![Simulator Screenshot - iPhone SE (3rd generation) - 2024-03-07 at 23 25 25](https://github.com/AdiAditya0/news-app/assets/31439875/46e3d1fc-028b-49a6-8f67-bb843bc09318)
